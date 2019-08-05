@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchNumbers } from '../actions';
 import NumberItem from './NumberItem';
 import styles from './NumberList.module.css';
+import { Link } from 'react-router-dom';
 
 class NumberList extends React.Component{
   state = {
@@ -55,8 +56,8 @@ class NumberList extends React.Component{
   renderCreate() {
     if (this.props.isSignedIn) {
       return (
-        <div style={{ textAlign: 'right'}}>
-          <Link to="/streams/new" className="ui button primary">
+        <div className={styles.create} style={{ textAlign: 'right'}}>
+          <Link to="/contacts/new" className="ui button primary">
             Create Stream
           </Link>
       </div>
@@ -70,9 +71,9 @@ class NumberList extends React.Component{
         <div className={styles.features}>
           <input placeholder="Search" onChange={this.onChange} ></input>
           <button onClick={this.sortAscending} className="ui blue button">Sort By Name</button>
+          {this.renderCreate()}
         </div>
         <div>{this.renderList()}</div>
-        {this.renderCreate()}
       </div>
     )
   }

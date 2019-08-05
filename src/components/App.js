@@ -2,7 +2,7 @@ import React from 'react';
 import NumberList from './NumberList';
 import history from '../history';
 import Header from './Header';
-import ContactCreate from './streams/ContactCreate';
+import ContactCreate from './ContactCreate';
 import { Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {

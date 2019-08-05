@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: 'http://www.mocky.io/v2'
+  baseURL: 'https://phonebook-8fa97.firebaseio.com'
 })
