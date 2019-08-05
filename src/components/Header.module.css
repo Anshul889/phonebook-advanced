@@ -3,24 +3,34 @@
   position: relative;
   background-color: #0d3244;
   font-family: 'Source Sans Pro', sans-serif !important;
+}
 
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 80%;
+  max-width: 65rem;
+  margin: 0 auto;
 }
 
 .dnavigation {
   padding: 0;
   box-sizing: content-box;
-  margin: 0 auto;
-  max-width: 65rem;
-  width: 90%;
   align-items: center;
   display: grid;
-  grid-template-columns: 1fr;
   grid-template-rows: 56px;
-  justify-items: center;
   background: 0 0;
   color: white;
   text-transform: uppercase;
   font-weight: 600;
   background-color: #0d3244;
   font-size: 15px;
+}
+
+
+
+.rightmenu {
+  display: grid;
+  justify-content: end;
+  align-items: center;
 }
