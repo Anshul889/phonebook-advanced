@@ -8,6 +8,7 @@ const NumberItem = (props) => {
         <h4>{props.title}</h4>
         <p>{props.phonenumber}</p>
         <p>{props.address}</p>
+
       </div>
     </div>
   )

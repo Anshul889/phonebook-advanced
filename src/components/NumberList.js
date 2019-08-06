@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchContacts } from '../actions';
-import NumberItem from './NumberItem';
 import styles from './NumberList.module.css';
 import { Link } from 'react-router-dom';
 
@@ -37,12 +36,16 @@ class NumberList extends React.Component{
     return filteredContacts.map(number => {
       return (
         <div key={number.phonenumber}>
-          {this.renderAdmin(number)}
-          <NumberItem
-            title={number.name}
-            phonenumber={number.phonenumber}
-            address={number.Address}
-            />
+
+          <div className={styles.NumberItem}>
+            <div className={styles.container}>
+              <Link to={`/contacts/${number.id}`} className="header"><h4>{number.name}</h4></Link>
+              <p>{number.phonenumber}</p>
+              <p>{number.address}</p>
+              {this.renderAdmin(number)}
+            </div>
+          </div>
+
         </div>
       )
     })

@@ -7,23 +7,23 @@ class ContactShow extends React.Component {
     this.props.fetchContact(this.props.match.params.id)
   }
   render() {
-    if(!this.props.stream) {
+    if(!this.props.number) {
       return <div>Loading...</div>
     }
 
-    const { title, description } = this.props.stream;
+    const { name, phonenumber } = this.props.number;
 
     return (
       <div>
-        <h1>{title}</h1>
-        <h5>{description}</h5>
+        <h1>{name}</h1>
+        <h5>{phonenumber}</h5>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { stream: state.streams[ownProps.match.params.id]};
+  return { number: state.numbers[ownProps.match.params.id]};
 };
 
 export default connect(mapStateToProps, { fetchContact })(ContactShow);

@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from './Modal';
 import { connect } from 'react-redux';
-import { fetchContact, deleteContact } from '../../actions';
+import { fetchContact, deleteContact } from '../actions';
 import history from '../history';
 
 class ContactDelete extends React.Component {

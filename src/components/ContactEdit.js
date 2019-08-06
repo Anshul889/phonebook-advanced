@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchContact, editContact } from '../../actions';
+import { fetchContact, editContact } from '../actions';
 import ContactForm from './ContactForm';
 
 class ContactEdit extends React.Component {

@@ -42,7 +42,7 @@ export const createContact = formValues => async (dispatch, getState) => {
   history.push('/');
 };
 
-export const deleteStream = id => async dispatch => {
+export const deleteContact = id => async dispatch => {
    await numbers.delete(`/numebers/${id}`);
 
    dispatch({ type: DELETE_CONTACT, payload: id});
