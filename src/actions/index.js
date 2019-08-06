@@ -1,5 +1,5 @@
 import numbers from '../apis/numbers';
-import { FETCH_NUMBERS, SIGN_IN, SIGN_OUT, CREATE_CONTACT } from '../actions/types';
+import { FETCH_CONTACTS, SIGN_IN, SIGN_OUT, CREATE_CONTACT, EDIT_CONTACT, DELETE_CONTACT, FETCH_CONTACT } from '../actions/types';
 import history from '../history';
 
 export const signIn = (userId) => {
@@ -15,10 +15,23 @@ export const signOut = () => {
   };
 };
 
-export const fetchNumbers = () => async dispatch => {
-  const response = await numbers.get('/numbers');
+export const fetchContacts = () => async dispatch => {
+  const response = await numbers.get('/numbers.json');
 
-  dispatch({ type: FETCH_NUMBERS, payload: response.data.numbers});
+  dispatch({ type: FETCH_CONTACTS, payload: response.data});
+};
+
+export const fetchContact = (id) => async dispatch => {
+  const response = await numbers.get(`/numbers/${id}`);
+
+  dispatch({ type: FETCH_CONTACT, payload: response.data });
+}
+
+export const editContact = (id, formValues) => async dispatch => {
+  const response = await numbers.patch(`/numbers/${id}`, formValues);
+
+  dispatch({ type: EDIT_CONTACT, payload: response.data});
+  history.push('/');
 };
 
 export const createContact = formValues => async (dispatch, getState) => {
@@ -28,3 +41,10 @@ export const createContact = formValues => async (dispatch, getState) => {
   dispatch({ type: CREATE_CONTACT, payload: response.data });
   history.push('/');
 };
+
+export const deleteStream = id => async dispatch => {
+   await numbers.delete(`/numebers/${id}`);
+
+   dispatch({ type: DELETE_CONTACT, payload: id});
+   history.push('/');
+}

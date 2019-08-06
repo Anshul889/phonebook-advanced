@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchNumbers } from '../actions';
+import { fetchContacts } from '../actions';
 import NumberItem from './NumberItem';
 import styles from './NumberList.module.css';
 import { Link } from 'react-router-dom';
@@ -11,7 +11,22 @@ class NumberList extends React.Component{
   }
 
   componentDidMount(){
-    this.props.fetchNumbers();
+    this.props.fetchContacts();
+  }
+
+  renderAdmin(contact) {
+    if (contact.userId === this.props.currentUserId) {
+      return (
+        <div className="right floated content">
+          <Link to={`/contacts/edit/${contact.id}`} className="ui button primary">
+            Edit
+          </Link>
+          <Link to={`/contacts/delete/${contact.id}`} className="ui button negative">
+            Delete
+          </Link>
+        </div>
+      );
+    }
   }
 
   renderList() {
@@ -21,11 +36,12 @@ class NumberList extends React.Component{
 
     return filteredContacts.map(number => {
       return (
-        <div key={number.phone_number}>
+        <div key={number.phonenumber}>
+          {this.renderAdmin(number)}
           <NumberItem
             title={number.name}
-            phonenumber={number.phone_number}
-            address={number.address}
+            phonenumber={number.phonenumber}
+            address={number.Address}
             />
         </div>
       )
@@ -87,4 +103,4 @@ class NumberList extends React.Component{
     };
   }
 
-export default connect(mapStateToProps, { fetchNumbers })(NumberList);
+export default connect(mapStateToProps, { fetchContacts })(NumberList);

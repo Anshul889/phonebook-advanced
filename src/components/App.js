@@ -3,6 +3,9 @@ import NumberList from './NumberList';
 import history from '../history';
 import Header from './Header';
 import ContactCreate from './ContactCreate';
+import ContactDelete from './ContactDelete';
+import ContactEdit from './ContactEdit';
+import ContactShow from './ContactShow';
 import { Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
@@ -14,6 +17,9 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={NumberList}></Route>
             <Route path="/contacts/new" exact component={ContactCreate}></Route>
+            <Route path="/contacts/edit/:id" exact component={ContactEdit}></Route>
+            <Route path="/contacts/delete/:id" exact component={ContactDelete}></Route>
+            <Route path="/contacts/:id" exact component={ContactShow}></Route>
           </Switch>
         </div>
       </Router>

@@ -1,12 +1,18 @@
 import _ from 'lodash';
-import { FETCH_NUMBERS, CREATE_CONTACT } from '../actions/types';
+import { FETCH_CONTACTS, CREATE_CONTACT, FETCH_CONTACT, EDIT_CONTACT, DELETE_CONTACT } from '../actions/types';
 
 const numberReducer = (state={}, action) => {
   switch (action.type) {
-    case FETCH_NUMBERS:
+    case FETCH_CONTACTS:
       return { ...state, ..._.mapKeys(action.payload, 'name')};
-      case CREATE_CONTACT:
+    case CREATE_CONTACT:
       return { ...state, [action.payload.id]: action.payload};
+    case FETCH_CONTACT:
+      return { ...state, [action.payload.id]: action.payload};
+    case EDIT_CONTACT:
+      return { ...state, [action.payload.id]: action.payload};
+    case DELETE_CONTACT:
+      return _.omit(state, action.payload);
     default:
       return state;
     }
