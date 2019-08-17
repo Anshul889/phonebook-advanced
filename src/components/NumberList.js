@@ -13,14 +13,14 @@ class NumberList extends React.Component{
     this.props.fetchContacts();
   }
 
-  renderAdmin(contact) {
-    if (contact.userId === this.props.currentUserId) {
+  renderAdmin(number) {
+    if (number.userId === this.props.currentUserId) {
       return (
         <div className="right floated content">
-          <Link to={`/contacts/edit/${contact.id}`} className="ui button primary">
+          <Link to={`/contacts/edit/${number.id}`} className="ui button primary">
             Edit
           </Link>
-          <Link to={`/contacts/delete/${contact.id}`} className="ui button negative">
+          <Link to={`/contacts/delete/${number.id}`} className="ui button negative">
             Delete
           </Link>
         </div>
@@ -41,7 +41,8 @@ class NumberList extends React.Component{
             <div className={styles.container}>
               <Link to={`/contacts/${number.id}`} className="header"><h4>{number.name}</h4></Link>
               <p>{number.phonenumber}</p>
-              <p>{number.address}</p>
+              <p>{number.Address}</p>
+              <p>{number.id}</p>
               {this.renderAdmin(number)}
             </div>
           </div>

@@ -17,8 +17,16 @@ export const signOut = () => {
 
 export const fetchContacts = () => async dispatch => {
   const response = await numbers.get('/numbers.json');
+  console.log(response)
+  const fetchedContacts = [];
+  for ( let key in response.data ) {
+                    fetchedContacts.push( {
+                        ...response.data[key],
+                        id: key
+                    });
+                }
 
-  dispatch({ type: FETCH_CONTACTS, payload: response.data});
+  dispatch({ type: FETCH_CONTACTS, payload: fetchedContacts});
 };
 
 export const fetchContact = (id) => async dispatch => {
@@ -28,7 +36,7 @@ export const fetchContact = (id) => async dispatch => {
 }
 
 export const editContact = (id, formValues) => async dispatch => {
-  const response = await numbers.patch(`/numbers/${id}`, formValues);
+  const response = await numbers.patch(`/numbers/${id}.json`, formValues);
 
   dispatch({ type: EDIT_CONTACT, payload: response.data});
   history.push('/');
