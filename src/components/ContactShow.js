@@ -14,7 +14,7 @@ class ContactShow extends React.Component {
     const { name, phonenumber } = this.props.number;
 
     return (
-      <div>
+      <div style={{width: '80%', margin: '0 auto', paddingTop: '10px'}}>
         <h1>{name}</h1>
         <h5>{phonenumber}</h5>
       </div>
