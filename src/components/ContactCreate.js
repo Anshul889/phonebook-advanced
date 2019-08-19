@@ -10,8 +10,8 @@ class ContactCreate extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3>Create a Stream</h3>
+      <div style={{ width: '80%', margin: '0 auto', paddingTop: '10px'}}>
+        <h3>Create a Contact</h3>
         <ContactForm onSubmit={this.onSubmit} />
       </div>
     );

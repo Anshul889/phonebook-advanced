@@ -17,7 +17,6 @@ export const signOut = () => {
 
 export const fetchContacts = () => async dispatch => {
   const response = await numbers.get('/numbers.json');
-  console.log(response)
   const fetchedContacts = [];
   for ( let key in response.data ) {
                     fetchedContacts.push( {
@@ -30,28 +29,29 @@ export const fetchContacts = () => async dispatch => {
 };
 
 export const fetchContact = (id) => async dispatch => {
-  const response = await numbers.get(`/numbers/${id}`);
-
-  dispatch({ type: FETCH_CONTACT, payload: response.data });
+  const response = await numbers.get(`/numbers/${id}.json`);
+  const fetchedContact = {...response.data, id};
+  console.log(fetchedContact);
+  dispatch({ type: FETCH_CONTACT, payload: fetchedContact});
 }
 
 export const editContact = (id, formValues) => async dispatch => {
   const response = await numbers.patch(`/numbers/${id}.json`, formValues);
-
-  dispatch({ type: EDIT_CONTACT, payload: response.data});
+  const editedContact = {...response.data, id};
+  console.log(editedContact);
+  dispatch({ type: EDIT_CONTACT, payload: editedContact});
   history.push('/');
 };
 
 export const createContact = formValues => async (dispatch, getState) => {
   const { userId } = getState().auth;
   const response = await numbers.post('/numbers.json', {...formValues, userId});
-
-  dispatch({ type: CREATE_CONTACT, payload: response.data });
+  dispatch({ type: CREATE_CONTACT, payload: response.data});
   history.push('/');
 };
 
 export const deleteContact = id => async dispatch => {
-   await numbers.delete(`/numebers/${id}`);
+   await numbers.delete(`/numbers/${id}.json`);
 
    dispatch({ type: DELETE_CONTACT, payload: id});
    history.push('/');

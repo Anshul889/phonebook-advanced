@@ -29,20 +29,23 @@ class NumberList extends React.Component{
   }
 
   renderList() {
+    if(!this.props.numbers){
+      return <div>Loading...</div>
+    }
+
     let filteredContacts = this.props.numbers.filter(number => {
       return number.name.toLowerCase().indexOf(this.state.search) !== -1;
     });
 
-    return filteredContacts.map(number => {
+    return filteredContacts.map((number, index) => {
       return (
-        <div key={number.phonenumber}>
+        <div key={index}>
 
           <div className={styles.NumberItem}>
             <div className={styles.container}>
               <Link to={`/contacts/${number.id}`} className="header"><h4>{number.name}</h4></Link>
               <p>{number.phonenumber}</p>
               <p>{number.Address}</p>
-              <p>{number.id}</p>
               {this.renderAdmin(number)}
             </div>
           </div>
@@ -78,7 +81,7 @@ class NumberList extends React.Component{
       return (
         <div className={styles.create} style={{ textAlign: 'right'}}>
           <Link to="/contacts/new" className="ui button primary">
-            Create Stream
+            Create Contact
           </Link>
       </div>
     );
