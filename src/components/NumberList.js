@@ -29,12 +29,9 @@ class NumberList extends React.Component{
   }
 
   renderList() {
-    if(!this.props.numbers){
-      return <div>Loading...</div>
-    }
 
     let filteredContacts = this.props.numbers.filter(number => {
-      return number.name.toLowerCase().indexOf(this.state.search) !== -1;
+      return number.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
     });
 
     return filteredContacts.map((number, index) => {
@@ -57,6 +54,7 @@ class NumberList extends React.Component{
 
   onChange = e => {
     this.setState({search: e.target.value});
+    console.log(this.state.search);
   }
 
   sortAscending = () => {
