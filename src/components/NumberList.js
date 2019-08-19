@@ -78,7 +78,7 @@ class NumberList extends React.Component{
       return (
         <div className={styles.create}>
           <Link to="/contacts/new" className="ui button primary">
-            <i class="edit icon" style={{margin: '0'}}></i>
+            <i class="edit icon" style={{margin: '0'}}></i> Add
           </Link>
         </div>
     );
