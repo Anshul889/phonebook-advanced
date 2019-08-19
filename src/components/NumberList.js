@@ -54,7 +54,6 @@ class NumberList extends React.Component{
 
   onChange = e => {
     this.setState({search: e.target.value});
-    console.log(this.state.search);
   }
 
   sortAscending = () => {
@@ -77,11 +76,11 @@ class NumberList extends React.Component{
   renderCreate() {
     if (this.props.isSignedIn) {
       return (
-        <div className={styles.create} style={{ textAlign: 'right'}}>
+        <div className={styles.create}>
           <Link to="/contacts/new" className="ui button primary">
             <i class="edit icon" style={{margin: '0'}}></i>
           </Link>
-      </div>
+        </div>
     );
     }
   }
@@ -90,8 +89,8 @@ class NumberList extends React.Component{
     return (
       <div className={styles.List}>
         <div className={styles.features}>
-          <input placeholder="Search" onChange={this.onChange} ></input>
-          <button onClick={this.sortAscending} className="ui blue button">Sort By Name</button>
+          <input className={styles.search} placeholder="Search" onChange={this.onChange} ></input>
+          <button onClick={this.sortAscending} className="ui blue button">Sort</button>
           {this.renderCreate()}
         </div>
         <div>{this.renderList()}</div>
