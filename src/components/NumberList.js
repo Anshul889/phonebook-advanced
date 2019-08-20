@@ -34,10 +34,13 @@ class NumberList extends React.Component{
       return number.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
     });
 
+    if(filteredContacts.length === 0 && this.state.search){
+      return <div style={{fontSize : '2em'}}>No matches found!</div>
+    } else {
+
     return filteredContacts.map((number, index) => {
       return (
         <div key={index}>
-
           <div className={styles.NumberItem}>
             <div className={styles.container}>
               <Link to={`/contacts/${number.id}`} className="header"><h4>{number.name}</h4></Link>
@@ -48,8 +51,9 @@ class NumberList extends React.Component{
           </div>
 
         </div>
-      )
-    })
+          )
+        }
+    )}
   }
 
   onChange = e => {

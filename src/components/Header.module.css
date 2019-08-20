@@ -34,3 +34,8 @@
   justify-content: end;
   align-items: center;
 }
+
+.dnavigation a {
+  text-decoration: none;
+  color: white;
+}
