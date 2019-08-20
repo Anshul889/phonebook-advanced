@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import history from '../history';
 
 class ContactForm extends React.Component {
   renderError({ error, touched }) {
@@ -42,6 +43,7 @@ class ContactForm extends React.Component {
           label="Address"
           />
         <button className="ui button primary">Submit</button>
+        <button onClick={() => history.push('/')} className="ui button negative">Cancel</button>
       </form>
     )
   }
