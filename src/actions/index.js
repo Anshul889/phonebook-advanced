@@ -13,6 +13,7 @@ export const signOut = () => {
   return {
     type: SIGN_OUT
   };
+  history.push('/');
 };
 
 export const fetchContacts = () => async dispatch => {

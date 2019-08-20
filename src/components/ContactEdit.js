@@ -18,7 +18,7 @@ class ContactEdit extends React.Component {
       return <div>Loading...</div>
     }
     return(
-      <div>
+      <div style={{'width' : '90%', margin: "0 auto", paddingTop: '15px'}}>
         <h3>Edit a Contact</h3>
         <ContactForm
           initialValues={_.pick(this.props.number, 'name', 'phonenumber')}

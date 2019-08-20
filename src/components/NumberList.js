@@ -47,6 +47,7 @@ class NumberList extends React.Component{
               <p>{number.phonenumber}</p>
               <p>{number.Address}</p>
               {this.renderAdmin(number)}
+              {(this.props.isSignedIn ? null : <div>Login to use the App</div>)}
             </div>
           </div>
 
