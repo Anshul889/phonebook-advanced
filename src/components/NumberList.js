@@ -13,22 +13,8 @@ class NumberList extends React.Component{
     this.props.fetchContacts();
   }
 
-  renderAdmin(number) {
-    if (number.userId === this.props.currentUserId) {
-      return (
-        <div className="right floated content">
-          <Link to={`/contacts/edit/${number.id}`} className="ui button primary">
-            Edit
-          </Link>
-          <Link to={`/contacts/delete/${number.id}`} className="ui button negative">
-            Delete
-          </Link>
-        </div>
-      );
-    }
-  }
-
   renderList() {
+    if(this.props.isSignedIn){
 
     let filteredContacts = this.props.numbers.filter(number => {
       return number.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
@@ -39,6 +25,7 @@ class NumberList extends React.Component{
     } else {
 
     return filteredContacts.map((number, index) => {
+      if (number.userId === this.props.currentUserId){
       return (
         <div key={index}>
           <div className={styles.NumberItem}>
@@ -46,16 +33,25 @@ class NumberList extends React.Component{
               <Link to={`/contacts/${number.id}`} className="header"><h4>{number.name}</h4></Link>
               <p>{number.phonenumber}</p>
               <p>{number.Address}</p>
-              {this.renderAdmin(number)}
-              {(this.props.isSignedIn ? null : <div>Login to use the App</div>)}
+              <div className="right floated content">
+                <Link to={`/contacts/edit/${number.id}`} className="ui button primary">
+                  Edit
+                </Link>
+                <Link to={`/contacts/delete/${number.id}`} className="ui button negative">
+                  Delete
+                </Link>
+              </div>
             </div>
           </div>
-
         </div>
           )
         }
+      }
     )}
+  } else {
+      return <div>Login to use App</div>
   }
+}
 
   onChange = e => {
     this.setState({search: e.target.value});
@@ -90,6 +86,12 @@ class NumberList extends React.Component{
     }
   }
 
+  renderAlert(){
+    if (!this.props.isSignedIn){
+      return <div>Login to use App</div>
+    }
+  }
+
   render(){
     return (
       <div className={styles.List}>
@@ -99,6 +101,7 @@ class NumberList extends React.Component{
           {this.renderCreate()}
         </div>
         <div>{this.renderList()}</div>
+        <div>{this.renderAlert()}</div>
       </div>
     )
   }
