@@ -14,7 +14,6 @@ class NumberList extends React.Component{
   }
 
   renderList() {
-    if(this.props.isSignedIn){
 
     let filteredContacts = this.props.numbers.filter(number => {
       return number.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
@@ -48,9 +47,6 @@ class NumberList extends React.Component{
         }
       }
     )}
-  } else {
-      return <div>Login to use App</div>
-  }
 }
 
   onChange = e => {
