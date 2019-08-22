@@ -5,6 +5,3 @@ export const CREATE_CONTACT = 'CREATE_CONTACT';
 export const FETCH_CONTACT = 'FETCH_CONTACT';
 export const DELETE_CONTACT = 'DELETE_CONTACT';
 export const EDIT_CONTACT = 'EDIT_CONTACT';
-export const ADD_FAV = 'ADD_FAV';
-export const REMOVE_FAV = 'REMOVE_FAV';
-export const FETCH_FAV = 'FETCH_FAV';

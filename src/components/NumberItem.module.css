@@ -42,3 +42,7 @@
 .NumberItem ul {
   padding: 0;
 }
+
+.container a{
+  text-decoration: none;
+}
