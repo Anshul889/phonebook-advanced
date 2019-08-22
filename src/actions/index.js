@@ -1,5 +1,5 @@
 import numbers from '../apis/numbers';
-import { FETCH_CONTACTS, SIGN_IN, SIGN_OUT, CREATE_CONTACT, EDIT_CONTACT, DELETE_CONTACT, FETCH_CONTACT } from '../actions/types';
+import { FETCH_CONTACTS, SIGN_IN, SIGN_OUT, CREATE_CONTACT, EDIT_CONTACT, DELETE_CONTACT, FETCH_CONTACT, FETCH_FAV, ADD_FAV, REMOVE_FAV } from '../actions/types';
 import history from '../history';
 
 export const signIn = (userId) => {
@@ -55,4 +55,27 @@ export const deleteContact = id => async dispatch => {
 
    dispatch({ type: DELETE_CONTACT, payload: id});
    history.push('/');
+}
+
+export const fetchFavourites = () => async dispatch => {
+  const response = await numbers.get('/favourites.json');
+  const fetchedFavourites = [];
+  for ( let key in response.data ) {
+                    fetchedFavourites.push( {
+                        ...response.data[key],
+                        id: key
+                    });
+                }
+
+  dispatch({ type: FETCH_FAV, payload: fetchedFavourites});
+};
+
+export const addFavourite = number => async dispatch => {
+  const response = await numbers.post('/favourites.json', number);
+  dispatch({type: ADD_FAV, payload: response.data});
+}
+
+export const removeFavourite = id => async dispatch => {
+  await numbers.delete(`/favourites/${id}.json`);
+  dispatch({ type: REMOVE_FAV, payload: id});
 }

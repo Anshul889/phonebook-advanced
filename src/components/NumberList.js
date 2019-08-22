@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchContacts } from '../actions';
+import { fetchContacts, addFavourite } from '../actions';
 import styles from './NumberList.module.css';
 import { Link } from 'react-router-dom';
 
@@ -39,6 +39,7 @@ class NumberList extends React.Component{
                 <Link to={`/contacts/delete/${number.id}`} className="ui button negative">
                   Delete
                 </Link>
+                <button className="ui button green" onClick={this.props.addFavourite(number)}>Like</button>
               </div>
             </div>
           </div>
@@ -111,4 +112,4 @@ class NumberList extends React.Component{
     };
   }
 
-export default connect(mapStateToProps, { fetchContacts })(NumberList);
+export default connect(mapStateToProps, { fetchContacts, addFavourite })(NumberList);

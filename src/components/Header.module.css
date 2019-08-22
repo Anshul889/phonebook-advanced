@@ -18,6 +18,7 @@
   box-sizing: content-box;
   align-items: center;
   display: grid;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 56px;
   background: 0 0;
   color: white;

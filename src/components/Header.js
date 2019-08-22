@@ -9,6 +9,7 @@ const Header = () => {
       <div className={styles.inner}>
         <div className={styles.dnavigation}>
           <Link to="/">Phonebook</Link>
+          <Link to="/">Favourites</Link>
         </div>
         <div className={styles.rightmenu}>
           <GoogleAuth />
